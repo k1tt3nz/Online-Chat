@@ -1,0 +1,17 @@
+E:\VS repos\ChatHost\bin\Debug\ChatHost.exe.config
+E:\VS repos\ChatHost\bin\Debug\ChatHost.exe
+E:\VS repos\ChatHost\bin\Debug\ChatHost.pdb
+E:\VS repos\ChatHost\bin\Debug\wcf_chat.dll
+E:\VS repos\ChatHost\bin\Debug\wcf_chat.pdb
+E:\VS repos\ChatHost\bin\Debug\wcf_chat.dll.config
+E:\VS repos\ChatHost\obj\Debug\ChatHost.csproj.AssemblyReference.cache
+E:\VS repos\ChatHost\obj\Debug\ChatHost.csproj.SuggestedBindingRedirects.cache
+E:\VS repos\ChatHost\obj\Debug\ChatHost.csproj.CoreCompileInputs.cache
+E:\VS repos\ChatHost\obj\Debug\ChatHost.csproj.CopyComplete
+E:\VS repos\ChatHost\obj\Debug\ChatHost.exe
+E:\VS repos\ChatHost\obj\Debug\ChatHost.pdb
+E:\VS repos\ChatHost\bin\Debug\MaterialDesignColors.dll
+E:\VS repos\ChatHost\bin\Debug\MaterialDesignThemes.Wpf.dll
+E:\VS repos\ChatHost\bin\Debug\MaterialDesignColors.pdb
+E:\VS repos\ChatHost\bin\Debug\MaterialDesignThemes.Wpf.pdb
+E:\VS repos\ChatHost\bin\Debug\MaterialDesignThemes.Wpf.xml

@@ -1,0 +1,173 @@
+﻿<Window x:Class="ChatClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatClient"
+        mc:Ignorable="d"
+        
+        Title="SC" Height="450" Width="800" ResizeMode="NoResize" Closing="Window_Closing">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#373737" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="15" Height="25" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#E59400" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="#534F4C" />
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="OrangeRed" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF9699A5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Подключение к чату" Margin="8,2,0,0" Height="107" VerticalAlignment="Top" HorizontalAlignment="Left" Width="234" FontFamily="Comic Sans MS"/>
+
+        <Button  x:Name="bConnDiscon"  Click="bConnect_Click" Content="Connect" HorizontalAlignment="Left" Margin="13,69,0,0" VerticalAlignment="Top" Width="220" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="tbUserName" HorizontalAlignment="Left" Margin="13,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lbChat" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,112,0,0" Height="249" VerticalAlignment="Top" Foreground="Black" FontSize="14" HorizontalAlignment="Left" Width="800" Background="#FFE8E8EA" FontFamily="Comic Sans MS" FontWeight="Bold"/>
+        <TextBox x:Name="tbMsg" Margin="0,361,0,10" TextWrapping="Wrap" KeyDown="tbMsg_KeyDown" FontSize="14" HorizontalAlignment="Left" Width="683" FontFamily="Comic Sans MS"/>
+        <TextBlock HorizontalAlignment="Left" Margin="13,23,0,0" TextWrapping="Wrap" Text="Никнейм:" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <TextBox x:Name="tbIPConn" HorizontalAlignment="Left" Margin="133,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="133,23,0,0" TextWrapping="Wrap" Text="IP:" VerticalAlignment="Top" FontFamily="Comic Sans MS"/>
+        <Button x:Name="bSendMsg" Content="" Margin="737,361,0,10" Click="bSendMsg_Click" BorderBrush="{x:Null}" Background="{x:Null}" Foreground="{x:Null}"/>
+        <Button x:Name="bEmoji" Content="Button" Margin="688,368,0,16" Click="bEmoji_Click" HorizontalAlignment="Left" Width="49" Style="{DynamicResource BoringButtonStyle}" Foreground="{x:Null}" BorderBrush="{x:Null}">
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="/free-icon-emoji-2060762.png" Stretch="Uniform"/>
+            </Button.OpacityMask>
+            <Button.Background>
+                <ImageBrush ImageSource="/free-icon-emoji-2060762.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Viewbox x:Name="vbEmojiSet" Margin="619,168,10,2" OpacityMask="#FF545252" Visibility="Hidden">
+            <Grid x:Name="gridEmoji" Height="65" Width="100" ShowGridLines="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button x:Name="bEmoji_SarcasmFace" Grid.Column="0" Grid.Row="0" Click="bEmoji_SarcasmFace_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/9a4b5216a288ab979ac04d08856edd.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/9a4b5216a288ab979ac04d08856edd.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_GrinningFace" Grid.Column="1" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_GrinningFace_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/070ccbbb696c2975bb0da521c2ffc5.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/070ccbbb696c2975bb0da521c2ffc5.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_WinkingFace" Grid.Column="2" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_WinkingFace_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/ceb7ce388c8b07ffa8495e9d8905bd.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/ceb7ce388c8b07ffa8495e9d8905bd.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_SavoringDelicacyFace" Grid.Column="3" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_SavoringDelicacyFace_Click"  >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/c7ad15c0277cdcdc7b7fa6dd26d595.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/c7ad15c0277cdcdc7b7fa6dd26d595.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_RelaxedFace" Grid.Column="4" Grid.Row="0" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_RelaxedFace_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/6f371576a6f84100ae7461b49d7a8f.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/6f371576a6f84100ae7461b49d7a8f.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_ClownFace" Grid.Column="0" Grid.Row="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_ClownFace_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/a32575058d2a78fd964b00194893ac.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/a32575058d2a78fd964b00194893ac.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_Poo" Grid.Column="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Height="33" Margin="0,32,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Click="bEmoji_Poo_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/da2cf7320c6aacab49335ec1c339d9.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/da2cf7320c6aacab49335ec1c339d9.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_Beer" Grid.Column="2" Grid.Row="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_Beer_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/71a424fcea3aa44956d5d48cda4b00.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/71a424fcea3aa44956d5d48cda4b00.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_Beer2" Grid.Column="3" Grid.Row="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_Beer2_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/4d656a393e78d941365183ad0e3203.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/4d656a393e78d941365183ad0e3203.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button x:Name="bEmoji_BabyBottle" Grid.Column="4" Grid.Row="1" BorderBrush="{x:Null}" Foreground="{x:Null}" Click="bEmoji_BabyBottle_Click" >
+                    <Button.OpacityMask>
+                        <ImageBrush Stretch="Uniform" ImageSource="/4e079fe6eafbfa4c171742a37659f0.png"/>
+                    </Button.OpacityMask>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/4e079fe6eafbfa4c171742a37659f0.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>
